@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
@@ -7,8 +8,10 @@ import { Action } from '../actions';
 // Can write as much async/await code and wait for response
 // When response is received redux-thunk manually dispatches action with payload
 // to reducers.
+// Set our defined type Action as Dispatch type so Typescript can check
+// that dispatched actions satisfy our Action interfaces
 export const searchRepositories = (term: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<Action>) => {
     // Dispatch search_repositories type action immediately when search is made
     dispatch({
       type: ActionType.SEARCH_REPOSITORIES,
