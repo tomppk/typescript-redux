@@ -9,11 +9,20 @@ interface RepositoriesState {
   data: string[];
 }
 
-// Define reducer. It will receive as arguments previous state
+// Define initial values for state so we do not get error
+// undefined state at redux store initialization
+const initialState = {
+  loading: false,
+  error: null,
+  data: [],
+};
+
+// Define reducer. It will receive as arguments previous state. If there is no
+// previous state it will receive as initial or default state initialState object.
 // and an action it needs to process.
 // It will return new state object of type RepositoriesState
 const reducer = (
-  state: RepositoriesState,
+  state: RepositoriesState = initialState,
   action: Action
 ): RepositoriesState => {
   switch (action.type) {
