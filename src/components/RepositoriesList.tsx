@@ -38,12 +38,20 @@ const RepositoriesList: React.FC = () => {
   // Controlled input with local state term. Term is set to be the value
   // of input event so the key that is pressed.
   // When form is submitted call onSubmit callback
+  // If error is defined then print out <h3> with error inside
+  // If loading is truthy value then print out <h3> with Loading...
+  // If no error and no loading then print out data array that contains
+  // npm package names and map it so that names are inside divs printed on
+  // separate lines
   return (
     <div>
       <form onSubmit={onSubmit}>
         <input value={term} onChange={(e) => setTerm(e.target.value)} />
         <button>Search</button>
       </form>
+      {error && <h3>{error}</h3>}
+      {loading && <h3>Loading...</h3>}
+      {!error && !loading && data.map((name) => <div key={name}>{name}</div>)}
     </div>
   );
 };
