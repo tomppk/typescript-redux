@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-export const App = () => {
-  return <div>Hi there!</div>;
-};
+import App from './components/App';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
