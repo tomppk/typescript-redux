@@ -11,7 +11,7 @@ const reducers = combineReducers({
 
 export default reducers;
 
-// Define type for redux store state
+// Allow Typescript to infer the 'RootState' type from our reducers
 // ReturnType<typeof reducers> means we have a variable reducers that is a
 // function. When we call that function it is going to internally call some
 // of our reducers that are going to give us back an object that kind of looks

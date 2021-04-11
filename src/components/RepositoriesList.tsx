@@ -2,9 +2,11 @@
 // inside our component. We can use it to manually dispatch an action creator
 // useSelector hook gives access to redux store, used with function components.
 // Similar to mapStateToProps that is used with class based components
+// We have created a pre-typed useTypedSelector hook that has redux store state
+// as type
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useActions } from '../hooks/useActions';
+import { useTypedSelector } from '../hooks/UseTypedSelector';
 
 // Annotate type as React.FunctionalComponent
 const RepositoriesList: React.FC = () => {
@@ -19,10 +21,9 @@ const RepositoriesList: React.FC = () => {
   // Destructure properties out of state.repositories property
   const [term, setTerm] = useState('');
   const { searchRepositories } = useActions();
-  const { data, error, loading } = useSelector(
-    (state: any) => state.repositories
+  const { data, error, loading } = useTypedSelector(
+    (state) => state.repositories
   );
-  console.log(state);
 
   // Get correct type for event by ctrl+click event inside form ie.
   // <form onSubmit={e => console.log(e)}
