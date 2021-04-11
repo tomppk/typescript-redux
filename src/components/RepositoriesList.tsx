@@ -1,6 +1,9 @@
 // Our useActions custom hook gives us access to dispatch() actions directly
 // inside our component. We can use it to manually dispatch an action creator
+// useSelector hook gives access to redux store, used with function components.
+// Similar to mapStateToProps that is used with class based components
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useActions } from '../hooks/useActions';
 
 // Annotate type as React.FunctionalComponent
@@ -11,8 +14,15 @@ const RepositoriesList: React.FC = () => {
   // is automatically dispatched
   // With this hook we do not need to use following inside this component
   // dispatch(actionCreators.searchRepositories(term));
+  // useSelector receives as argument our entire state object from redux
+  // we can return whole state, some of it or format it with the callback
+  // Destructure properties out of state.repositories property
   const [term, setTerm] = useState('');
   const { searchRepositories } = useActions();
+  const { data, error, loading } = useSelector(
+    (state: any) => state.repositories
+  );
+  console.log(state);
 
   // Get correct type for event by ctrl+click event inside form ie.
   // <form onSubmit={e => console.log(e)}
